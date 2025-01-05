@@ -1,0 +1,55 @@
+tags:
+  - Water
+summary: Edit water record by id
+operationId: patchWater
+description: 'Edit water record by id with payload'
+security:
+  - bearerAuth: []
+parameters:
+  - in: path
+    name: id
+    required: true
+    schema:
+      type: string
+      example: 6726846963175a2dc7b159ce
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          amount:
+            description: 'Amount of water'
+            type: number
+            example: 250
+          # date:
+          #   description: 'Date of water record'
+          #   type: string
+          #   example: '2024-12-04 12:12:12'
+responses:
+  '200':
+    description: Edit water record
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Successfully edit water record!
+            data:
+              type: object
+              $ref: '../../../components/schemas/water.yaml'
+  '401':
+    $ref: '../../../components/responses/401.yaml'
+  '404':
+    $ref: '../../../components/responses/404.yaml'
+  '500':
+    $ref: '../../../components/responses/500.yaml'

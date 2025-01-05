@@ -1,0 +1,42 @@
+tags:
+  - Water
+summary: Get water record by month
+operationId: getWaterByMonth
+description: 'Get water record by month'
+security:
+  - bearerAuth: []
+parameters:
+  - in: path
+    name: date
+    required: true
+    schema:
+      type: string
+      example: '2024-12'
+responses:
+  '200':
+    description: 'Successfully fetched water data by month!'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Successfully fetched water data by month!
+            data:
+              type: array
+              items:
+                $ref: '../../../components/schemas/water.yaml'
+  '404':
+    $ref: '../../../components/responses/404.yaml'
+  '401':
+    $ref: '../../../components/responses/401.yaml'
+  '500':
+    $ref: '../../../components/responses/500.yaml'

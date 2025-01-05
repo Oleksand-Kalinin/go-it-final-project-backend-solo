@@ -1,0 +1,29 @@
+tags:
+  - User
+summary: Get number of users
+operationId: totalNumberUsers
+description: 'Get information about number of user'
+security: []
+responses:
+  '200':
+    description: Successfully found number of users!
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: "Successfully found number of users!"
+            data:
+              type: number
+              example: 13
+              description: 'Total number of users'
+  

@@ -1,0 +1,98 @@
+tags:
+  - User
+summary: Register user
+operationId: registerController
+description: 'Register a new user by providing email and password. The email must be unique, and the password will be securely hashed before storing in the database.'
+security: []
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - email
+          - password
+        properties:
+          email:
+            description: "User's email address"
+            type: string
+            example: 'jane.doe@example.com'
+          password:
+            description: "User's password"
+            type: string
+            example: 'awfawfawf'
+responses:
+  '201':
+    description: 'User registered'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: 'User registered'
+            data:
+              type: object
+              required:
+                - _id
+                - name
+                - email
+                - gender
+                - createdAt
+                - updatedAt
+                - sportHours
+                - weight
+                - photo
+              properties:
+                _id:
+                  type: string
+                  example: '6745fd4047be484107443d1c'
+                name:
+                  type: string
+                  example: 'testname'
+                email:
+                  type: string
+                  format: email
+                  example: 'user@gmail.com'
+                gender:
+                  type: string
+                  enum:
+                    - man
+                    - woman
+                  example: 'man'
+                createdAt:
+                  type: string
+                  format: date-time
+                  example: '2024-11-26T16:54:24.922Z'
+                updatedAt:
+                  type: string
+                  format: date-time
+                  example: '2024-11-26T17:06:35.823Z'
+                sportHours:
+                  type: integer
+                  example: 31
+                  description: 'Total hours spent on sports activities.'
+                weight:
+                  type: number
+                  format: float
+                  example: 13
+                  description: 'User weight in kilograms.'
+                waterNorm:
+                  type: number
+                  example: 1500
+                  description: 'Users water norm in ml.'
+                photo:
+                  type: string
+                  format: uri
+                  example: 'https://res.cloudinary.com/dnepourus/image/upload/v1732640796/ffzgnlx8rznuauv2etlj.jpg'
+                  description: 'URL of the user profile photo.'
+  '409':
+    $ref: '../../components/responses/409.yaml'

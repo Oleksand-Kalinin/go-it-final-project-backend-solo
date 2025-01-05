@@ -1,0 +1,117 @@
+tags:
+  - User
+summary: Patch user
+operationId: patchContactController
+description: 'Patch a contact with the provided payload and id'
+security:
+  - bearerAuth: []
+requestBody:
+  content:
+    multipart/form-data:
+      schema:
+        type: object
+        properties:
+          name:
+            description: "Contact's name"
+            type: string
+            example: 'Jane Doe'
+          email:
+            description: "Contact's email address"
+            type: string
+            example: 'jane.doe@example.com'
+          gender:
+            description: "gender of contact"
+            type: string
+            enum: ['man', 'woman']
+            default: 'woman'
+            example: 'woman'
+          weight:
+            type: number
+            format: float
+            example: 13
+            description: 'User weight in kilograms.'
+          sportHours:
+            type: integer
+            example: 31
+            description: 'Total hours spent on sports activities.'
+          waterNorm:
+            type: integer
+            example: 1332
+            description: 'Total liters of water user shoud drink.'
+          photo:
+            description: "Contact's photo"
+            type: string
+            format: binary
+responses:
+  '200':
+    description: Successfully patched a user!
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: "Successfully patched a user!"
+            data:
+              type: object
+              required:
+                - _id
+                - name
+                - email
+                - gender
+                - createdAt
+                - updatedAt
+                - sportHours
+                - weight
+                - photo
+              properties:
+                _id:
+                  type: string
+                  example: "6745fd4047be484107443d1c"
+                  description: "The unique identifier of the user."
+                name:
+                  type: string
+                  example: "testname"
+                  description: "The name of the user."
+                email:
+                  type: string
+                  example: "user@gmail.com"
+                  description: "The email address of the user."
+                gender:
+                  type: string
+                  example: "man"
+                  description: "The gender of the user."
+                createdAt:
+                  type: string
+                  format: date-time
+                  example: "2024-11-26T16:54:24.922Z"
+                  description: "Timestamp when the user was created."
+                updatedAt:
+                  type: string
+                  format: date-time
+                  example: "2024-11-26T19:00:53.813Z"
+                  description: "Timestamp when the user was last updated."
+                sportHours:
+                  type: integer
+                  example: 31
+                  description: "The number of hours the user has spent on sport."
+                weight:
+                  type: integer
+                  example: 13
+                  description: "The weight of the user."
+                photo:
+                  type: string
+                  example: "https://res.cloudinary.com/dnepourus/image/upload/v1732647654/ebmio3lwf3dzvgxrnl6e.jpg"
+                  description: "The URL of the user's photo."
+  '401':
+    $ref: '../../components/responses/401.yaml'
+  '404':
+    $ref: '../../components/responses/404.yaml'

@@ -1,0 +1,35 @@
+type: object
+required:
+  - _id
+  - userId
+  - amount
+  - date
+  - createdAt
+  - updatedAt
+properties:
+  _id:
+    type: string
+    description: 'Unique identifier for the object'
+    example: '6750a95ebc9d40a99d34db91'
+  userId:
+    type: string
+    description: 'User identifier associated with the water consumption entry'
+    example: '6750a66a4f76dc21c8828509'
+  amount:
+    type: number
+    description: 'Amount of water in milliliters between 50 and 15000'
+    minimum: 50
+    maximum: 15000
+    example: 2440
+  date:
+    type: string
+    description: "The date and time of water consumption in 'YYYY-MM-DDTHH:mm:ss' format"
+    example: '2024-12-04T12:12:12'
+  createdAt:
+    type: string
+    description: 'Timestamp when the record was created'
+    example: '2024-12-04T19:11:26.388Z'
+  updatedAt:
+    type: string
+    description: 'Timestamp when the record was last updated'
+    example: '2024-12-04T19:11:26.388Z'

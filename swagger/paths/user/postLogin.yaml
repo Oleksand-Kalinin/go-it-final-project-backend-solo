@@ -1,0 +1,54 @@
+tags:
+  - User
+summary: Login user
+operationId: loginController
+description: 'Login user by providing email and password. The system will set cookies for the refresh token and session ID and return an access token.'
+security: []
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - email
+          - password
+        properties:
+          email:
+            description: "User's email address"
+            type: string
+            example: 'jane.doe@example.com'
+          password:
+            description: "User's password"
+            type: string
+            example: 'awfawfawf'
+responses:
+  '200':
+    description: 'Login completed successfully and cookies are set'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: 'Login completed'
+            data:
+              type: object
+              required:
+                - accessToken
+              properties:
+                accessToken:
+                  type: string
+                  example: 'zGP0/lTNuKX/X+hzmZ9fMZBAixqBfb1NRo+H8/xP'
+                  description: "Access token for authenticated requests."
+  '401':
+    $ref: '../../components/responses/401.yaml'
+  '404':
+    $ref: '../../components/responses/404.yaml'

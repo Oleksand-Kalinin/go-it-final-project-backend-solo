@@ -1,0 +1,36 @@
+tags:
+  - User
+summary: refresh access
+operationId: refreshController
+description: 'refresh session'
+security:
+  - bearerAuth: []
+responses:
+  '200':
+    description: 'Session refreshed!'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: 'Session refreshed'
+            data:
+              type: object
+              required:
+                - accessToken
+              properties:
+                accessToken:
+                  type: string
+                  example: 'zGP0/lTNuKX/X+hzmZ9fMZBAixqBfb1NRo+H8/xP'
+                  description: "Access token for authenticated requests."
+  '401':
+    $ref: '../../components/responses/401.yaml'

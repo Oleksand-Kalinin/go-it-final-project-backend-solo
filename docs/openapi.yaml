@@ -1,0 +1,60 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: TrackWaterAppDoc
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  description: This is a documentation of TrackWaterApp
+tags:
+  - name: Water
+    description: Operations about water.
+  - name: User
+    description: User operations.
+servers:
+  - url: http://localhost:8080
+  - url: https://final-project-mobileteam-backend.onrender.com
+paths:
+  /user/register:
+    post:
+      $ref: ../swagger/paths/user/postRegister.yaml
+  /user/login:
+    post:
+      $ref: ../swagger/paths/user/postLogin.yaml
+  /user/info:
+    get:
+      $ref: ../swagger/paths/user/getInfo.yaml
+  /user:
+    patch:
+      $ref: ../swagger/paths/user/patchUser.yaml
+  /user/logout:
+    post:
+      $ref: ../swagger/paths/user/postLogout.yaml
+  # /user/logout2point0:
+  #   post:
+  #     $ref: ../swagger/paths/user/postlogout2point0.yaml
+  /user/refresh:
+    post:
+      $ref: ../swagger/paths/user/postRefresh.yaml
+  /user/participants:
+    get:
+      $ref: ../swagger/paths/user/getNumberOfUsers.yaml
+  /water:
+    post:
+      $ref: ../swagger/paths/water/post.yaml
+  /water/{id}:
+    patch:
+      $ref: ../swagger/paths/water/{id}/patch.yaml
+    delete:
+      $ref: ../swagger/paths/water/{id}/delete.yaml
+  /water/day/{date}:
+    get:
+      $ref: ../swagger/paths/water/day/get.yaml
+  /water/month/{date}:
+    get:
+      $ref: ../swagger/paths/water/month/get.yaml
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
